@@ -7,7 +7,7 @@ from django.db import models
 class Volunteer(models.Model):
     emailAddr = models.EmailField (max_length=75)
     dateJoined = models.DateTimeField (auto_now_add=True)
-    timezone = models.CharField (max_length=6)
+    timezone = models.CharField (max_length=50)
     firstReminderTime = models.DateTimeField ()
     nextReminderTime = models.DateTimeField ()
     phoneNumber = models.CharField (max_length=16, blank=True, null=True)
