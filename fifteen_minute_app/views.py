@@ -5,3 +5,9 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("Let's get it going")
+
+def signupform(request):
+    return HttpResponse("Let's get it going. Sign me up.")
+
+def signupcomplete(request):
+    return HttpResponse("Let's get it going. I'm all signed up.")
