@@ -41,28 +41,30 @@
 
     <div class="container">
 
-        <form method="POST">
+        <form id="signup_form" method="POST">
             <!-- CSRF token for security -->
             {% csrf_token %}
 
+            <!-- Hideen fields -->
+            <input type="hidden" name="timezone" id="timezone">
 
 
             <!-- full-name input-->
             <div class="form-group">
                 <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                {{form.fullName}}
                 {{ form.fullName.errors }}
             </div>
 
             <div class="form-group">
                 <label for="emailAddr">Email address</label>
-                <input type="email" class="form-control" id="emailAddr" aria-describedby="emailHelp" placeholder="Enter email">
+                {{form.emailAddr}}
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 {{ form.emailAddr.errors }}
             </div>
             <div class="form-group">
                 <label for="phoneNumber">Phone</label>
-                <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                {{form.phoneNumber}}
                 {{ form.phoneNumber.errors }}
             </div>
 
@@ -72,48 +74,52 @@
                 <!-- address-line1 input-->
                 <div class="form-group">
                     <label for="addr1">Address Line 1</label>
-                    <input id="addr1" type="text" placeholder="Address line 1" class="form-control">
+                    {{form.addr1}}
                     <small>Street address, P.O. box, company name, c/o</small>
+                    {{form.addr1.errors}}
                 </div>
 
                 <!-- address-line2 input-->
                 <div class="form-group">
                     <label for="addr2">Address Line 2</label>
-                    <input id="addr2" type="text" placeholder="Address line 2" class="form-control">
+                    {{form.addr2}}
                     <small>Apartment, suite , unit, building, floor, etc.</small>
+                    {{form.addr2.errors}}
                 </div>
                 <!-- City -->
                 <div class="form-group">
                     <label for="city">City</label>
-                    <input id="city" name="city" type="text" placeholder="City" class="form-control">
+                    {{form.city}}
+                    {{form.city.errors}}
                 </div>
                 <!-- State -->
                 <div class="form-group">
                     <label for="state">State</label>
-                    <input id="state" type="text" placeholder="State" class="form-control">
+                    <input id="state" type="text" placeholder="State">
                 </div>
                 <!-- zipcode -->
                 <div class="form-group">
                     <label for="zipcode">Zip Code</label>
-                    <input id="zipcode" type="text" placeholder="Zip Code" class="form-control">
+                    {{form.zipcode}}
+                    {{form.zipcode.errors}}
                 </div>
             </fieldset>
 
             <div class="form-group">
                 <label for="day">Day</label>
-                <select class="form-control" id="day">
-                <option>Monday</option>
-                <option>Tuesday</option>
-                <option>Wednesday</option>
-                <option>Thursday</option>
-                <option>Friday</option>
-                <option>Saturday</option>
-                <option>Sunday</option>
+                <select id="day">
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Sunday</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="time">Time</label>
-                <input type="text" class="form-control time" id="time" autocomplete="off">
+                <input type="text" id="time" autocomplete="off">
             </div>
 
             <button type="submit" class="btn btn-primary">Sign me up!</button>

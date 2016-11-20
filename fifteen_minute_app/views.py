@@ -27,7 +27,8 @@ def signupform(request):
         # Read form values  
         form = VolunteerForm(request.POST)
         if form.is_valid():
-            return render(request, 'signup.html', {})
+            volunteer = form.save(commit=False)
+            return HttpResponse("Thank you {0}!".format(volunteer.fullName))
         else:
             return render(request, 'signup.html', {"form": form})
         
