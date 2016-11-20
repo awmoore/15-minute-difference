@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>15 Minute Difference</title>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Website styles and JS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/moment.min.js"></script>
+
+    <!-- jQuery TimePicker -->
+    <script type="text/javascript" src="/static/js/jquery.timepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.timepicker.css" />
+
+    <script>
+        $(document).ready(function(){
+            $('#time').timepicker({"step": 15});
+        });
+    </script>
+  </head>
+  <body>
+    <h1>Signup!</h1>
+    <br/>
+
+    <div class="container">
+
+        <form method="POST">
+            <!-- CSRF token for security -->
+            {% csrf_token %}
+
+
+
+            <!-- full-name input-->
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                {{ form.fullName.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="emailAddr">Email address</label>
+                <input type="email" class="form-control" id="emailAddr" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                {{ form.emailAddr.errors }}
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone</label>
+                <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                {{ form.phoneNumber.errors }}
+            </div>
+
+
+            <!-- Address -->
+            <fieldset>
+                <!-- address-line1 input-->
+                <div class="form-group">
+                    <label for="addr1">Address Line 1</label>
+                    <input id="addr1" type="text" placeholder="Address line 1" class="form-control">
+                    <small>Street address, P.O. box, company name, c/o</small>
+                </div>
+
+                <!-- address-line2 input-->
+                <div class="form-group">
+                    <label for="addr2">Address Line 2</label>
+                    <input id="addr2" type="text" placeholder="Address line 2" class="form-control">
+                    <small>Apartment, suite , unit, building, floor, etc.</small>
+                </div>
+                <!-- City -->
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input id="city" name="city" type="text" placeholder="City" class="form-control">
+                </div>
+                <!-- State -->
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input id="state" type="text" placeholder="State" class="form-control">
+                </div>
+                <!-- zipcode -->
+                <div class="form-group">
+                    <label for="zipcode">Zip Code</label>
+                    <input id="zipcode" type="text" placeholder="Zip Code" class="form-control">
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <label for="day">Day</label>
+                <select class="form-control" id="day">
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+                <option>Sunday</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="time">Time</label>
+                <input type="text" class="form-control time" id="time" autocomplete="off">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign me up!</button>
+        </form>
+    </div>
+
+  </body>
+</html>

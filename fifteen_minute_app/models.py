@@ -5,6 +5,7 @@ from django.db import models
 # Create your models here.
 
 class Volunteer(models.Model):
+    fullName = models.CharField(max_length=75)
     emailAddr = models.EmailField (max_length=75)
     dateJoined = models.DateTimeField (auto_now_add=True)
     timezone = models.CharField (max_length=50)
