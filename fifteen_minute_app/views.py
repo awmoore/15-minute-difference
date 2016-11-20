@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django import forms
 from models import Volunteer
 
+from send_emails import send_welcome_email
+
 class VolunteerForm(forms.ModelForm):
     class Meta:
         model = Volunteer
@@ -28,6 +30,7 @@ def signupform(request):
         form = VolunteerForm(request.POST)
         if form.is_valid():
             volunteer = form.save(commit=False)
+            send_welcome_email(volunteer.emailAddr) 
             return HttpResponse("Thank you {0}!".format(volunteer.fullName))
         else:
             return render(request, 'signup.html', {"form": form})
