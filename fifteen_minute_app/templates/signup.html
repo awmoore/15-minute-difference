@@ -32,6 +32,12 @@
     <script>
         $(document).ready(function(){
             $('#time').timepicker({"step": 15});
+
+            $("#signup_form").submit(function(){
+                // Read timezone
+                var offset = new Date().getTimezoneOffset();
+                $("#timezone").val(offset);
+            });
         });
     </script>
   </head>
@@ -59,7 +65,7 @@
             <div class="form-group">
                 <label for="emailAddr">Email address</label>
                 {{form.emailAddr}}
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small class="text-muted">We'll never share your email with anyone else.</small>
                 {{ form.emailAddr.errors }}
             </div>
             <div class="form-group">
@@ -75,7 +81,7 @@
                 <div class="form-group">
                     <label for="addr1">Address Line 1</label>
                     {{form.addr1}}
-                    <small>Street address, P.O. box, company name, c/o</small>
+                    <small class="text-muted">Street address, P.O. box, company name, c/o</small>
                     {{form.addr1.errors}}
                 </div>
 
@@ -83,7 +89,7 @@
                 <div class="form-group">
                     <label for="addr2">Address Line 2</label>
                     {{form.addr2}}
-                    <small>Apartment, suite , unit, building, floor, etc.</small>
+                    <small class="text-muted">Apartment, suite , unit, building, floor, etc.</small>
                     {{form.addr2.errors}}
                 </div>
                 <!-- City -->

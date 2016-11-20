@@ -8,7 +8,7 @@ class Volunteer(models.Model):
     fullName = models.CharField(max_length=75)
     emailAddr = models.EmailField (max_length=75)
     dateJoined = models.DateTimeField (auto_now_add=True)
-    timezone = models.CharField (max_length=50)
+    timezone = models.IntegerField ()  # minutes from UTC
     firstReminderTime = models.DateTimeField ()
     nextReminderTime = models.DateTimeField ()
     phoneNumber = models.CharField (max_length=16, blank=True, null=True)
