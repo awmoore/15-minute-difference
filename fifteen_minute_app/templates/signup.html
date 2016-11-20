@@ -23,7 +23,7 @@
 
     <!-- Website styles and JS -->
     <link rel="stylesheet" href="/static/css/styles.css">
-    <script src="/static/js/moment.min.js"></script>
+    <!--<script src="/static/js/moment.min.js"></script>-->
 
     <!-- jQuery TimePicker -->
     <script type="text/javascript" src="/static/js/jquery.timepicker.min.js"></script>
@@ -31,12 +31,20 @@
 
     <script>
         $(document).ready(function(){
-            $('#time').timepicker({"step": 15});
+            $('#time').timepicker({"step": 15, "minTime": "7:00am", "maxTime": "7:00pm"});
 
             $("#signup_form").submit(function(){
                 // Read timezone
                 var offset = new Date().getTimezoneOffset();
                 $("#timezone").val(offset);
+
+                // Read selected date/time.
+                // Week days are numbered from Sunday = 0 to Saturday = 6;
+                var firstReminderTime = $("#time").timepicker("getTime");  // returns today's date with the time selected in the text box
+                // Change the date part to the day selected in the UI. Keeping in mind to select the next day of the week.
+                firstReminderTime.setDate(firstReminderTime.getDate() + (7 - firstReminderTime.getDay()) % 7 + parseInt($("#day").val()));
+                // Save the value in the hidden field. Format it in a way that Django understands.
+                $("#firstReminderTime").val(firstReminderTime.toISOString().substring(0, 19).replace("T", " "));
             });
         });
     </script>
@@ -53,7 +61,8 @@
 
             <!-- Hideen fields -->
             <input type="hidden" name="timezone" id="timezone">
-
+            <input type="hidden" name="firstReminderTime" id="firstReminderTime">
+            {{ form.firstReminderTime.errors}}
 
             <!-- full-name input-->
             <div class="form-group">
@@ -114,13 +123,13 @@
             <div class="form-group">
                 <label for="day">Day</label>
                 <select id="day">
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                    <option>Sunday</option>
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                    <option value="0">Sunday</option>
                 </select>
             </div>
             <div class="form-group">

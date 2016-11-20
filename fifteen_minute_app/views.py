@@ -12,10 +12,8 @@ class VolunteerForm(forms.ModelForm):
         model = Volunteer
         fields = ['fullName', 'emailAddr', "phoneNumber",
         "addr1", "addr2", "city", "state", "zipcode",
-        "timezone",
+        "timezone", "firstReminderTime",
         ]
-
-    # fullname = forms.CharField(label='Your name', max_length=100)
 
 
 def index(request):
@@ -32,10 +30,11 @@ def signupform(request):
         if form.is_valid():
             # Read the form data into a Volumnteer model.
             volunteer = form.save(commit=False)
-            # volunteer.timezone = -request.FORM["timezone"]
 
-            send_welcome_email(volunteer.emailAddr) 
-            return HttpResponse("Thank you {0}! Your timezone is {1}".format(volunteer.fullName, volunteer.timezone))
+            send_welcome_email(volunteer.emailAddr)
+
+            return HttpResponse("Thank you {0}! Your timezone is {1} and your first reminder is on {2}".format(
+                volunteer.fullName, volunteer.timezone, volunteer.firstReminderTime))
         else:
             return render(request, 'signup.html', {"form": form})
         
