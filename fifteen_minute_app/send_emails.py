@@ -14,14 +14,15 @@ from datetime import datetime
 def send_an_email(recipient, msg):
     username = settings.SMTP_LOGIN
     password = settings.SMTP_PASSWORD
+    host = settings.SMTP_HOST
 
     try:
-        mailServer = smtplib.SMTP('smtp-mail.outlook.com', 587)
+        mailServer = smtplib.SMTP(host, 587)
         mailServer.ehlo()
         mailServer.starttls()
         mailServer.ehlo()
         mailServer.login(username, password)
-        mailServer.sendmail(username, recipient, msg.as_string())
+        mailServer.sendmail(settings.SMTP_FROM_ADDR, recipient, msg.as_string())
         mailServer.close()
 
     except Exception as e:
@@ -30,7 +31,7 @@ def send_an_email(recipient, msg):
 def send_welcome_email(recipient, firstDateTime=datetime.now()):
     msg = MIMEMultipart()
     msg['To'] = recipient
-    msg['From'] = "The People Who Care <thepeoplewhocare@outlook.com"
+    msg['From'] = "15 Minute Difference Team <hello@15minutedifference.com>"
     msg['Subject'] = "Welcome to Fifteen Minute Difference!"
     message = "Hello there! It worked! Here is a calendar invite"
     msg.attach(MIMEText(message, 'plain'))

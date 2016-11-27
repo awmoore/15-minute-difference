@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 
 class Volunteer(models.Model):
-    fullName = models.CharField(max_length=75)
+    fullName = models.CharField (max_length=75)
     emailAddr = models.EmailField (max_length=75)
     dateJoined = models.DateTimeField (auto_now_add=True)
     timezone = models.IntegerField ()  # minutes from UTC
@@ -19,3 +19,15 @@ class Volunteer(models.Model):
     city = models.CharField (max_length=100, blank=True, null=True)
     state = models.CharField (max_length=2, blank=True, null=True)
     nonUS = models.BooleanField (default=False)
+
+class ActionableEmail(models.Model):
+    subject = models.CharField (max_length=200, blank=True, null=False)
+    htmlBody = models.TextField ()
+    textBody = models.TextField ()
+    timestamp = models.DateTimeField (auto_now_add=True)
+    activeStart = models.DateTimeField (blank=True, null=True)
+    
+class SentEmail(models.Model):
+    timestamp = models.DateTimeField (auto_now_add=True)
+    volunteer = models.ForeignKey(Volunteer)
+    actionableEmail = models.ForeignKey(ActionableEmail)

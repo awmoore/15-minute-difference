@@ -30,6 +30,8 @@ def signupform(request):
         if form.is_valid():
             # Read the form data into a Volumnteer model.
             volunteer = form.save(commit=False)
+            volunteer.nextReminderTime = volunteer.firstReminderTime
+            volunteer.save()
 
             send_welcome_email(volunteer.emailAddr)
 
