@@ -33,7 +33,7 @@ def signupform(request):
             volunteer.nextReminderTime = volunteer.firstReminderTime
             volunteer.save()
 
-            send_welcome_email(volunteer.emailAddr)
+            send_welcome_email(volunteer.emailAddr, firstDateTime = volunteer.firstReminderTime)
 
             return HttpResponse("Thank you {0}! Your timezone is {1} and your first reminder is on {2}".format(
                 volunteer.fullName, volunteer.timezone, volunteer.firstReminderTime))
