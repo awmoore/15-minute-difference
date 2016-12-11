@@ -50,96 +50,129 @@
     </script>
   </head>
   <body>
-    <h1>Signup!</h1>
-    <br/>
+    <header>
+    </header>
+    <section class="page-cover-sec">
+        <div class="cover-sec-overlay"></div>
+        <div class="container">
+            <h1 class="cover-sec-text"> Welcome to 15 minute difference!</h1>
+        </div>
 
+    </section>
+   
     <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-9 page-main-content">
+                <p class="page-subtitle">Sign up to commit only 15 minutes a week!</p>
+                <div class="row">
+                    <div class="leave-comment-form">
 
-        <form id="signup_form" method="POST">
-            <!-- CSRF token for security -->
-            {% csrf_token %}
+                        <form id="signup_form" method="POST">
+                            <!-- CSRF token for security -->
+                            {% csrf_token %}
 
-            <!-- Hideen fields -->
-            <input type="hidden" name="timezone" id="timezone">
-            <input type="hidden" name="firstReminderTime" id="firstReminderTime">
-            {{ form.firstReminderTime.errors}}
+                            <!-- Hideen fields -->
+                            <input type="hidden" name="timezone" id="timezone">
+                            <input type="hidden" name="firstReminderTime" id="firstReminderTime">
+                            {{ form.firstReminderTime.errors}}
+                        
+                        <div class="row">
+                        
+                        <div class="col-xs-6">
+                        <!-- full-name input-->
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                {{form.fullName}}
+                                {{ form.fullName.errors }}
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
 
-            <!-- full-name input-->
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                {{form.fullName}}
-                {{ form.fullName.errors }}
-            </div>
+                            <div class="form-group">
+                                <label for="emailAddr">Email address</label>
+                                {{form.emailAddr}}
+                                <small class="text-muted">We'll never share your email with anyone else.</small>
+                                {{ form.emailAddr.errors }}
+                            </div>
+                        </div> <!-- email addr col -->
+                        </div> <!-- name email addr row -->
+                        <!-- hide for now 
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone</label>
+                            {{form.phoneNumber}}
+                            {{ form.phoneNumber.errors }}
+                        </div>
+                        <!-- Address ->
+                        <fieldset>
+                        <!-- address-line1 input->
+                        <div class="form-group">
+                            <label for="addr1">Address Line 1</label>
+                            {{form.addr1}}
+                            <small class="text-muted">Street address, P.O. box, company name, c/o</small>
+                            {{form.addr1.errors}}
+                        </div>
 
-            <div class="form-group">
-                <label for="emailAddr">Email address</label>
-                {{form.emailAddr}}
-                <small class="text-muted">We'll never share your email with anyone else.</small>
-                {{ form.emailAddr.errors }}
-            </div>
-            <div class="form-group">
-                <label for="phoneNumber">Phone</label>
-                {{form.phoneNumber}}
-                {{ form.phoneNumber.errors }}
-            </div>
+                        <!-- address-line2 input->
+                        <div class="form-group">
+                            <label for="addr2">Address Line 2</label>
+                            {{form.addr2}}
+                            <small class="text-muted">Apartment, suite , unit, building, floor, etc.</small>
+                            {{form.addr2.errors}}
+                        </div>
+                        <!-- City ->
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            {{form.city}}
+                            {{form.city.errors}}
+                        </div>
+                        <!-- State ->
+                        <!-- <div class="form-group">
+                            <label for="state">State</label>
+                            <input id="state" type="text" placeholder="State">
+                        </div>
+                        -->
+                        <!-- zipcode -->
+                        <div class="row">
+                            <div class="col-xs-2">
+                            <div class="form-group">
+                                <label for="zipcode">Zip Code</label>
+                                {{form.zipcode}}
+                                {{form.zipcode.errors}}
+                            </div>
+                            </div>
+                        <!-- </fieldset> -->
+                        </div>
+                    <div class="row"> <!-- day and time row -->
+                        <div class="col-xs-2">
+                            <div class="form-group">
+                                <label for="day">Day</label>
+                                <select id="day">
+                                    <option value="1">Monday</option>
+                                    <option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option>
+                                    <option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                    <option value="6">Saturday</option>
+                                    <option value="0">Sunday</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <input type="text" id="time" autocomplete="off">
+                            </div>
+                        </div>
+                </div> <!-- day and time row -->
 
+                <button type="submit" class="btn btn-primary">Sign me up!</button>
+                </form> <!--sign-up-form -->
 
-            <!-- Address -->
-            <fieldset>
-                <!-- address-line1 input-->
-                <div class="form-group">
-                    <label for="addr1">Address Line 1</label>
-                    {{form.addr1}}
-                    <small class="text-muted">Street address, P.O. box, company name, c/o</small>
-                    {{form.addr1.errors}}
-                </div>
-
-                <!-- address-line2 input-->
-                <div class="form-group">
-                    <label for="addr2">Address Line 2</label>
-                    {{form.addr2}}
-                    <small class="text-muted">Apartment, suite , unit, building, floor, etc.</small>
-                    {{form.addr2.errors}}
-                </div>
-                <!-- City -->
-                <div class="form-group">
-                    <label for="city">City</label>
-                    {{form.city}}
-                    {{form.city.errors}}
-                </div>
-                <!-- State -->
-                <div class="form-group">
-                    <label for="state">State</label>
-                    <input id="state" type="text" placeholder="State">
-                </div>
-                <!-- zipcode -->
-                <div class="form-group">
-                    <label for="zipcode">Zip Code</label>
-                    {{form.zipcode}}
-                    {{form.zipcode.errors}}
-                </div>
-            </fieldset>
-
-            <div class="form-group">
-                <label for="day">Day</label>
-                <select id="day">
-                    <option value="1">Monday</option>
-                    <option value="2">Tuesday</option>
-                    <option value="3">Wednesday</option>
-                    <option value="4">Thursday</option>
-                    <option value="5">Friday</option>
-                    <option value="6">Saturday</option>
-                    <option value="0">Sunday</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="time">Time</label>
-                <input type="text" id="time" autocomplete="off">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Sign me up!</button>
-        </form>
-    </div>
+            </div><!--leave-comment-form"-->
+        </div><!-- row -->
+        </div><!-- page-main-content -->
+        </div><!-- row -->
+    </div><!-- container -->
 
   </body>
 </html>
